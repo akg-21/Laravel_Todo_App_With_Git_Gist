@@ -17,6 +17,8 @@ Route::middleware('auth')->group(function () {
     // Route::get('/project',function(){
     //     return view('project');
     // });
+    Route::get('/view-data/{id}',[ProjectsController::class,'show'])->name('viewdata');
+    Route::post('/update',[ProjectsController::class,'update'])->name('update');
     Route::get('/project',[ProjectsController::class,'index'])->name('view');
     Route::post('/insert',[ProjectsController::class,'store'])->name('insert');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

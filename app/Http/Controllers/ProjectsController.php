@@ -14,8 +14,8 @@ class ProjectsController extends Controller
     public function index()
     {
         $table=DB::table('projects')->get();
-
-        return view("project",compact("table"));
+        $editdata=null;
+        return view("project",compact("table","editdata"));
  
     }
 
@@ -44,9 +44,10 @@ class ProjectsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(projects $projects)
+    public function show(string $id)
     {
-        //
+        $editdata=projects::where('id','=',$id)->first();
+        return view('project',compact('editdata'));
     }
 
     /**
