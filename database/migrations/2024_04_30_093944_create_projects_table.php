@@ -15,8 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string("name");
             $table->boolean("status")->default(false);
-            $table->timestamp("created_date");
-            $table->timestamp("updated_date");
             $table->timestamps();
         });
     }

@@ -4,14 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project List</title>
-    @vite(['resources/css/app.css'])
+    @vite(['resources/css/project.css'])
 </head>
 <body>
     <div class="container">
+        <div class="add-project-form">
+            <h2>Add Project</h2>
+            <form action="{{ route('insert') }}"  method="POST">
+                @csrf
+                <label for="project-name">Project Name:</label>
+                <input type="text" id="project-name" name="project_name" required>
+                <button type="submit">Add Project</button>
+            </form>
+        </div>
+        @if ($table->count()==0)
+        <div class="project-section">
+            <h2 class="section-title">No Projects</h2>
+        </div>
+        @else
         <div class="project-section">
             <h2 class="section-title">Pending Projects</h2>
+        @foreach ($table as $rec)
+        @if ($rec->status==0)
             <div class="project-item">
-                <h3>Project Name 1</h3>
+                <h3>{{ $rec->name }}</h3>
                 <p>Created Date: January 1, 2024</p>
                 <div class="project-actions">
                     <button class="edit">Edit</button>
@@ -19,20 +35,8 @@
                     <button class="update-status">Mark as Done</button>
                 </div>
             </div>
-            <div class="project-item">
-                <h3>Project Name 1</h3>
-                <p>Created Date: January 1, 2024</p>
-                <div class="project-actions">
-                    <button class="edit">Edit</button>
-                    <button class="delete">Delete</button>
-                    <button class="update-status">Mark as Done</button>
-                </div>
-            </div>
-            <!-- Add more pending project items as needed -->
         </div>
-    </div>
-    
-    <div class="container">
+        @else
         <div class="project-section">
             <h2 class="section-title">Completed Projects</h2>
             <div class="project-item">
@@ -44,8 +48,10 @@
                     <button class="update-status">Mark as Pending</button>
                 </div>
             </div>
-            <!-- Add more completed project items as needed -->
         </div>
+        @endif
+        @endforeach
+        @endif
     </div>
 </body>
 </html>

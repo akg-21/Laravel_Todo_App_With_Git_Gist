@@ -2,17 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\project;
+use App\Models\projects;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
-class ProjectController extends Controller
+class ProjectsController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $table=DB::table('projects')->get();
+
+        return view("project",compact("table"));
+ 
     }
 
     /**
@@ -28,13 +32,19 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+       $request->validate(['project_name'=>'required']);
+       $projects = new Projects();
+       $projects->name = $request->project_name;
+       $projects->status=0;
+       $projects->save();
+       return redirect()->back();
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(project $project)
+    public function show(projects $projects)
     {
         //
     }
@@ -42,7 +52,7 @@ class ProjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(project $project)
+    public function edit(projects $projects)
     {
         //
     }
@@ -50,7 +60,7 @@ class ProjectController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, project $project)
+    public function update(Request $request, projects $projects)
     {
         //
     }
@@ -58,7 +68,7 @@ class ProjectController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(project $project)
+    public function destroy(projects $projects)
     {
         //
     }

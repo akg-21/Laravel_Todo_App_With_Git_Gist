@@ -1,0 +1,95 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.project-section {
+    margin-bottom: 20px;
+}
+.section-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.project-item {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+.project-item:last-child {
+    margin-bottom: 0;
+}
+.project-item h3 {
+    margin-top: 0;
+}
+.project-actions {
+    margin-top: 10px;
+}
+.project-actions button {
+    padding: 5px 10px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.project-actions button:last-child {
+    margin-right: 0;
+}
+.project-actions button.edit {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+}
+.project-actions button.delete {
+    background-color: #e74c3c;
+    color: #fff;
+    border: none;
+}
+.project-actions button.update-status {
+    background-color: #27ae60;
+    color: #fff;
+    border: none;
+}
+.project-actions button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+.add-project-form {
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+.add-project-form label {
+    display: block;
+    margin-bottom: 5px;
+}
+.add-project-form input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+.add-project-form button {
+    padding: 8px 20px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.add-project-form button:hover {
+    background-color: #2980b9;
+}
