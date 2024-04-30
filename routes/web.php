@@ -7,6 +7,9 @@ use App\Http\Controllers\ProjectsController;
 Route::get('/', function () {
     return view('auth.login');
 });
+Route::get('/todo', function () {
+    return view('todo');
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -17,7 +20,9 @@ Route::middleware('auth')->group(function () {
     // Route::get('/project',function(){
     //     return view('project');
     // });
-    Route::get('/view-data/{id}',[ProjectsController::class,'show'])->name('viewdata');
+    Route::get('/statusUp/{id}', [ProjectsController::class,'statusUp'])->name('statusUp');
+    Route::get('/delete/{id}',[ProjectsController::class,'destroy'])->name('delete'); 
+    Route::get('/viewdata/{id}',[ProjectsController::class,'show'])->name('viewdata');
     Route::post('/update',[ProjectsController::class,'update'])->name('update');
     Route::get('/project',[ProjectsController::class,'index'])->name('view');
     Route::post('/insert',[ProjectsController::class,'store'])->name('insert');

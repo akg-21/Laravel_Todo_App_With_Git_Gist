@@ -93,3 +93,12 @@ body {
 .add-project-form button:hover {
     background-color: #2980b9;
 }
+a {
+    text-decoration: none !important;
+    color: inherit !important;
+}
+.project-actions button.addtodo {
+    background-color: #d834db;
+    color: #fff;
+    border: none;
+}
