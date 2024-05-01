@@ -24,7 +24,7 @@
                     <input
                         type="hidden"
                         name="id"
-                        value="{{ $editdata->id }}"
+                        value="{{ $editdata->project_id }}"
                     />
                     <button type="submit">Submit</button>
                 </form>
@@ -58,17 +58,22 @@
                     <p>Updated Date: {{ $rec->updated_at }}</p>
                     <p>Created Date: {{ $rec->created_at }}</p>
                     <div class="project-actions">
+                        <button class="addtodo"><a
+                            class="edit"
+                            href="{{ route('view_todo', $rec->project_id) }}"
+                            >Add Todo
+                        </a></button>
                         <button class="edit">
                             <a
                                 class="edit"
-                                href="{{ route('viewdata', $rec->id) }}"
+                                href="{{ route('viewdata', $rec->project_id) }}"
                                 >Edit
                             </a>
                         </button>
                         <button class="delete">
-                            <a href="{{ route('delete', $rec->id) }}">Delete</a>
+                            <a href="{{ route('delete', $rec->project_id) }}">Delete</a>
                         </button>
-                        <button class="update-status"> <a href="{{ route('statusUp', $rec->id) }}">Mark as Done</a></button>
+                        <button class="update-status"> <a href="{{ route('statusUp', $rec->project_id) }}">Mark as Done</a></button>
                     </div>
                 </div>
                 @endif @endforeach
@@ -91,14 +96,14 @@
                         <button class="edit">
                             <a
                                 class="edit"
-                                href="{{ route('viewdata', $rec->id) }}"
+                                href="{{ route('viewdata', $rec->project_id) }}"
                                 >Edit
                             </a>
                         </button>
                         <button class="delete">
-                            <a href="{{ route('delete', $rec->id) }}">Delete</a>
+                            <a href="{{ route('delete', $rec->project_id) }}">Delete</a>
                         </button>
-                        <button class="update-status"> <a href="{{ route('statusUp', $rec->id) }}">Mark as Pending</a></button>
+                        <button class="update-status"> <a href="{{ route('statusUp', $rec->project_id) }}">Mark as Pending</a></button>
                     </div>
                 </div>
                 @endif @endforeach

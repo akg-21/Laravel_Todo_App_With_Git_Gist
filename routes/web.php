@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TodoController;
 use App\Http\Controllers\ProjectsController;
 
 Route::get('/', function () {
@@ -20,15 +21,24 @@ Route::middleware('auth')->group(function () {
     // Route::get('/project',function(){
     //     return view('project');
     // });
+
+    //toto routes starts
+    Route::get('/todo/{id}', [TodoController::class,'index'])->name('view_todo');
+    Route::post('/insert_todo',[TodoController::class,'store'])->name('insert_todo');     
+
+    //project routes starts
     Route::get('/statusUp/{id}', [ProjectsController::class,'statusUp'])->name('statusUp');
     Route::get('/delete/{id}',[ProjectsController::class,'destroy'])->name('delete'); 
     Route::get('/viewdata/{id}',[ProjectsController::class,'show'])->name('viewdata');
     Route::post('/update',[ProjectsController::class,'update'])->name('update');
     Route::get('/project',[ProjectsController::class,'index'])->name('view');
     Route::post('/insert',[ProjectsController::class,'store'])->name('insert');
+    //project routes ends
+    //profile routes starts
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    //profile routes ends
 });
 
 require __DIR__.'/auth.php';

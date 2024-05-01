@@ -12,7 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('todos', function (Blueprint $table) {
-            $table->id();
+            $table->id('todo_id');
+            $table->string('todo_name');
+            $table->string('todo_Description');
+            $table->boolean("todo_status")->default(false);
+            $table->unsignedBigInteger('project_id');
+            $table->foreign('project_id')->references('project_id')->on('projects')->cascadeOnDelete();
             $table->timestamps();
         });
     }

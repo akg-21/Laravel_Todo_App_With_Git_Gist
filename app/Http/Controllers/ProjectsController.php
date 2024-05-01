@@ -41,7 +41,7 @@ class ProjectsController extends Controller
        $projects->name = $request->project_name;
        $projects->status=0;
        $projects->save();
-       return redirect()->route('view');
+       return redirect()->route('view_todo');
     }
 
     /**
@@ -49,7 +49,7 @@ class ProjectsController extends Controller
      */
     public function show(string $id)
     {
-        $editdata=projects::where('id','=',$id)->first();
+        $editdata=projects::where('project_id','=',$id)->first();
         return view('project',compact('editdata'));
     }
 
@@ -68,7 +68,7 @@ class ProjectsController extends Controller
     {
         // dd($request->all());   
        $request->validate(['project_name'=> 'required']);
-        projects::where('id','=',$request->id)->update(['name'=> $request->project_name]);
+        projects::where('project_id','=',$request->id)->update(['name'=> $request->project_name]);
         return redirect()->route('view');
     }
 
@@ -77,18 +77,18 @@ class ProjectsController extends Controller
      */
     public function destroy(string $id)
     {
-        DB::table('projects')->where('id',$id)->delete();
+        DB::table('projects')->where('project_id',$id)->delete();
         return redirect()->back();
     }
     public function statusUp(string $id)
     {
         // dd($id);
-        $data=projects::where('id','=',$id)->first();
+        $data=projects::where('project_id','=',$id)->first();
         if($data->status== 0){
-            projects::where('id','=',$id)->update(['status'=> 1]);
+            projects::where('project_id','=',$id)->update(['status'=> 1]);
         }
         else{
-            projects::where('id','=',$id)->update(['status'=> 0]);
+            projects::where('project_id','=',$id)->update(['status'=> 0]);
         }
         
         return redirect()->route('view');
