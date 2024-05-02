@@ -22,12 +22,17 @@
                     id="todoTitle"
                     name="todoTitle"
                     placeholder="Title..."
+                    maxlength="15"
+                    minlength="1"
+                    required
                 />
                 <input
                     type="hidden"
                     name="project_id"
                     id="project_id"
                     value="{{ $projectdata->project_id }}"
+                    required
+                    minlength="1"
                 />
                 <input
                     type="text"
@@ -51,7 +56,7 @@
             </ul> -->
         </div>
 
-        <div class="container">
+        <div class="container2">
             @if($pendingCount!=0)
             <div id="todo-item-template">
                 <h2>Pending Todos</h2>
@@ -167,7 +172,7 @@
                 @endforeach -->
             </div>
         </div>
-        <div class="container">
+        <div class="container2">
             @if($completedCount!=0)
             <div id="todo-item-template">
                 <h2>Completed Todos</h2>

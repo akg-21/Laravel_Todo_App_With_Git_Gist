@@ -17,7 +17,7 @@ class TodoController extends Controller
         $completedCount=DB::table('todos')->where('todo_status',1)->count();
         $pendingCount=DB::table('todos')->where('todo_status',0)->count();
         $tododata = Todo::where('project_id','=',$id)->first();
-        $alltodo=DB::table('todos')->get();
+        $alltodo=DB::table('todos')->where('project_id','=',$id)->get();
         $projectdata=projects::where('project_id','=',$id)->first();
         // dd($tododata);
         return view("todo", compact("tododata","alltodo","projectdata","completedCount","pendingCount"));

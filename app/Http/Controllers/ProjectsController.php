@@ -41,7 +41,7 @@ class ProjectsController extends Controller
        $projects->name = $request->project_name;
        $projects->status=0;
        $projects->save();
-       return redirect()->route('view_todo');
+       return redirect()->route('view');
     }
 
     /**
