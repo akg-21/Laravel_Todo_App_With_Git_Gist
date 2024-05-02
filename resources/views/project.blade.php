@@ -92,7 +92,11 @@
                     <p>Updated Date: {{ $rec->updated_at }}</p>
                     <p>Created Date: {{ $rec->created_at }}</p>
                     <div class="project-actions">
-                        <button class="addtodo">Add Todo</button>
+                        <button class="addtodo"><a
+                            class="edit"
+                            href="{{ route('view_todo', $rec->project_id) }}"
+                            >Add Todo
+                        </a></button>
                         <button class="edit">
                             <a
                                 class="edit"

@@ -8,8 +8,8 @@ use App\Http\Controllers\ProjectsController;
 Route::get('/', function () {
     return view('auth.login');
 });
-Route::get('/todo', function () {
-    return view('todo');
+Route::get('/pop', function () {
+    return view('pop');
 });
 
 Route::get('/dashboard', function () {
@@ -23,6 +23,7 @@ Route::middleware('auth')->group(function () {
     // });
 
     //toto routes starts
+    Route::get('/delete_todo/{id}',[TodoController::class,'destroy'])->name('delete_todo');
     Route::get('/todo/{id}', [TodoController::class,'index'])->name('view_todo');
     Route::post('/insert_todo',[TodoController::class,'store'])->name('insert_todo');     
 

@@ -8,17 +8,8 @@
     </head>
     <body>
         <div class="container">
-            <h1>Todo List</h1>
-            <ul class="todo-list" id="todoList">
-                <li class="todo-item">
-                    <span>Title: ${todoTitle}</span>
-                    <span>Description: ${todoDescription}</span>
-                    <span>Status: ${todoStatus}</span>
-                    <span>Created Date: ${todoCreatedDate}</span>
-                    <span>Updated Date: ${todoUpdatedDate}</span>
-                    <button onclick="deleteTodo(this)">Delete</button>
-                </li>
-            </ul>
+            <h1>{{ $projectdata->name }}</h1>
+
             <form
                 class="add-todo-form"
                 id="addTodoForm"
@@ -36,7 +27,7 @@
                     type="hidden"
                     name="project_id"
                     id="project_id"
-                    value="{{ $tododata->todo_name }}"
+                    value="{{ $projectdata->project_id }}"
                 />
                 <input
                     type="text"
@@ -46,8 +37,124 @@
                 />
                 <button type="submit">Add</button>
             </form>
+            <!-- <ul class="todo-list" id="todoList">
+                @foreach($alltodo as $resource)
+                <li class="todo-item">
+                    <span>Title:{{ $resource->todo_name }}</span>
+                    <span>Description: {{ $resource->todo_Description }}</span>
+                    <span>Status: {{ $resource->todo_status }}</span>
+                    <span>Created Date: {{ $resource->created_at }}</span>
+                    <span>Updated Date: {{ $resource->updated_at }}</span>
+                    <button onclick="deleteTodo(this)">Delete</button>
+                </li>
+                @endforeach
+            </ul> -->
+        </div>
+        <div class="container">
+            <div id="todo-item-template">
+                @if($alltodo)
+                <table>
+                    @foreach($alltodo as $resource)
+                    <tr>
+                        <td>
+                            <h2 class="title">{{ $resource->todo_name }}</h2>
+                        </td>
+                        <td>
+                            <p>
+                                Updated:
+                                <span class="update-date">
+                                    {{ $resource->updated_at }}</span
+                                >
+                            </p>
+                        </td>
+                        <td>
+                            <button class="btn btn-primary edit">Edit</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-primary edit">
+                                <a
+                                    href="{{ route('statusUp', $resource->todo_id) }}"
+                                    >Mark as Pending</a
+                                >
+                            </button>
+                        </td>
+                        <td>
+                            <button class="btn btn-danger delete">
+                                <a
+                                    href="{{ route('delete_todo', $resource->todo_id) }}"
+                                    >Delete</a
+                                >
+                            </button>
+                        </td>
+                        <td>
+                            <div class="popup">
+                                <button>Hover me</button>
+                                <div class="popup-content">
+                                    <h3>Title:{{ $resource->todo_name }}</h3>
+                                    <p>
+                                        {{ $resource->todo_Description }}
+                                    </p>
+                                    <p>
+                                        Creation Date:
+                                        {{ $resource->created_at }}
+                                    </p>
+                                    <p>
+                                        Update Date: {{ $resource->updated_at }}
+                                    </p>
+                                    <p>Status:{{ $resource->todo_status }}</p>
+                                    <button class="btn btn-danger delete">
+                                        <a
+                                            href="{{ route('delete_todo', $resource->todo_id) }}"
+                                            >Delete</a
+                                        >
+                                    </button>
+                                    <button>Edit</button>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    @endforeach
+                </table>
+                @else @endif
+
+                <!-- @foreach($alltodo as $resource)
+                <div class="todo-item">
+                    <h2 class="title">{{ $resource->todo_name }}</h2>
+
+                    <p>
+                        Status:
+                        <span class="status">{{ $resource->todo_status }}</span>
+                    </p>
+                    <p>
+                        Updated:
+                        <span class="update-date">
+                            {{ $resource->updated_at }}</span
+                        >
+                    </p>
+                    <div class="actions">
+                        <button class="btn btn-primary edit">Edit</button>
+                        <button class="btn btn-danger delete">Delete</button>
+
+                        <div class="popup">
+                            <button>Hover me</button>
+                            <div class="popup-content">
+                                <h3>Title:{{ $resource->todo_name }}</h3>
+                                <p>
+                                    {{ $resource->todo_Description }}
+                                </p>
+                                <p>
+                                    Creation Date: {{ $resource->created_at }}
+                                </p>
+                                <p>Update Date: {{ $resource->updated_at }}</p>
+                                <p>Status:{{ $resource->todo_status }}</p>
+                                <button>Delete</button>
+                                <button>Edit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endforeach -->
+            </div>
         </div>
     </body>
 </html>
-@foreach($alltodo as $resource)
-{{ $resource->todo_name }} @endforeach

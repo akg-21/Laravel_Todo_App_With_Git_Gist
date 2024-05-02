@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\projects;
 use App\Models\todo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -11,13 +12,14 @@ class TodoController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(string $id)
     {
         
-        $tododata = Todo::where('project_id','=',1)->first();
+        $tododata = Todo::where('project_id','=',$id)->first();
         $alltodo=DB::table('todos')->get();
+        $projectdata=projects::where('project_id','=',$id)->first();
         // dd($tododata);
-        return view("todo", compact("tododata","alltodo"));
+        return view("todo", compact("tododata","alltodo","projectdata"));
     }
 
     /**
@@ -37,13 +39,15 @@ class TodoController extends Controller
         $todo = new Todo();
         $request->validate([
         'todoTitle'=>'required',
-        'todoDescription'=>'required'
+        'todoDescription'=>'required',
+        'project_id'=>'required'
         ]);
         $todo->todo_name= $request->todoTitle;
         $todo->todo_Description= $request->todoDescription;
+        $todo->project_id= $request->project_id;
         $todo->todo_status=0;
         $todo->save();
-        return redirect()->route('view');
+        return redirect()->back();
     }
 
     /**
@@ -73,8 +77,10 @@ class TodoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(todo $todo)
+    public function destroy(string $id)
     {
-        //
+        // dd($id);
+        DB::table('todos')->where('todo_id',$id)->delete();
+        return redirect()->back();
     }
 }
