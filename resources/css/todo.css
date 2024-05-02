@@ -93,6 +93,16 @@ h1 {
     color: #fff;
     border: none;
 }
+.status {
+    background-color: #27ae60;
+    color: #fff;
+    border: none;
+}
+.hover {
+    background-color: #d834db;
+    color: #fff;
+    border: none;
+}
 .btn-danger:hover {
     background-color: #c82333;
 }
@@ -132,9 +142,4 @@ h1 {
 a {
     text-decoration: none !important;
     color: inherit !important;
-}
-.update-status {
-    background-color: #27ae60;
-    color: #fff;
-    border: none;
 }
