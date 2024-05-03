@@ -7,7 +7,56 @@
         @vite(['resources/css/todo.css'])
     </head>
     <body>
+        <!-- container for edit -->
+        {{
+        $todoeditdata=null;
+        }}
+        @if($todoeditdata)
         <div class="container">
+            <button class="btn btn-primary edit">
+                <a href="{{ route('view') }}">Back</a>
+            </button>
+            <h1>{{ $projectdata->name }}</h1>
+
+            <form
+                class="add-todo-form"
+                id="addTodoForm"
+                method="post"
+                action="{{ route('insert_todo') }}"
+            >
+                @csrf
+                <input
+                    type="text"
+                    id="todoTitle"
+                    name="todoTitle"
+                    placeholder="Title..."
+                    maxlength="15"
+                    minlength="1"
+                    required
+                />
+                <input
+                    type="hidden"
+                    name="project_id"
+                    id="project_id"
+                    value="{{ $projectdata->project_id }}"
+                    required
+                    minlength="1"
+                />
+                <input
+                    type="text"
+                    name="todoDescription"
+                    id="todoDescription"
+                    placeholder="Description..."
+                />
+                <button type="submit">Add</button>
+            </form>
+        </div>
+        @else @if($projectdata)
+        <!-- container for insert -->
+        <div class="container">
+            <button class="btn btn-primary edit">
+                <a href="{{ route('view') }}">Back</a>
+            </button>
             <h1>{{ $projectdata->name }}</h1>
 
             <form
@@ -78,7 +127,12 @@
                             </p>
                         </td>
                         <td>
-                            <button class="btn btn-primary edit">Edit</button>
+                            <button class="btn btn-primary edit">
+                                <a
+                                    href="{{ route('viewdata_todo', $resource->todo_id) }}"
+                                    >Edit</a
+                                >
+                            </button>
                         </td>
                         <td>
                             <button class="btn btn-primary status">
@@ -99,7 +153,7 @@
                         <td>
                             <div class="popup">
                                 <button class="btn btn-primary hover">
-                                    Hover me
+                                    More Detailsd
                                 </button>
                                 <div class="popup-content">
                                     <h3>Title:{{ $resource->todo_name }}</h3>
@@ -194,7 +248,12 @@
                             </p>
                         </td>
                         <td>
-                            <button class="btn btn-primary edit">Edit</button>
+                            <button class="btn btn-primary edit">
+                                <a
+                                    href="{{ route('viewdata_todo', $rec->todo_id) }}"
+                                    >Edit</a
+                                >
+                            </button>
                         </td>
                         <td>
                             <button class="btn btn-primary status">
@@ -288,5 +347,6 @@
                 @endforeach -->
             </div>
         </div>
+        @endif @endif
     </body>
 </html>

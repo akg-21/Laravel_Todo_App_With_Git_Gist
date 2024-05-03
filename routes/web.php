@@ -27,7 +27,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/delete_todo/{id}',[TodoController::class,'destroy'])->name('delete_todo');
     Route::get('/view_todo/{id}', [TodoController::class,'index'])->name('view_todo');
     Route::post('/insert_todo',[TodoController::class,'store'])->name('insert_todo');     
-
+    Route::get('/viewdata_todo/{id}',[TodoController::class,'show'])->name('viewdata_todo');
+    Route::post('/update_todo',[TodoController::class,'update'])->name('update_todo');
     //project routes starts
     Route::get('/statusUp/{id}', [ProjectsController::class,'statusUp'])->name('statusUp');
     Route::get('/delete/{id}',[ProjectsController::class,'destroy'])->name('delete'); 

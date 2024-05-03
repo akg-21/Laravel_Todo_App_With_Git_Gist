@@ -20,7 +20,8 @@ class TodoController extends Controller
         $alltodo=DB::table('todos')->where('project_id','=',$id)->get();
         $projectdata=projects::where('project_id','=',$id)->first();
         // dd($tododata);
-        return view("todo", compact("tododata","alltodo","projectdata","completedCount","pendingCount"));
+        $todoeditdata=null;
+        return view("todo", compact("tododata","alltodo","projectdata","completedCount","pendingCount","todoeditdata"));
     }
 
     /**
@@ -54,9 +55,13 @@ class TodoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(todo $todo)
+    public function show(string $id)
     {
-        //
+        // $todoeditdata=todo::where('todo_id','=',$id)->first();
+
+        // // dd($todoeditdata);
+        // $projectdata=null;
+        return view('todo',compact('todoeditdata','projectdata'));
     }
 
     /**
