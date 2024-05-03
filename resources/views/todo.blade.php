@@ -8,50 +8,8 @@
     </head>
     <body>
         <!-- container for edit -->
-        {{
-        $todoeditdata=null;
-        }}
-        @if($todoeditdata)
-        <div class="container">
-            <button class="btn btn-primary edit">
-                <a href="{{ route('view') }}">Back</a>
-            </button>
-            <h1>{{ $projectdata->name }}</h1>
 
-            <form
-                class="add-todo-form"
-                id="addTodoForm"
-                method="post"
-                action="{{ route('insert_todo') }}"
-            >
-                @csrf
-                <input
-                    type="text"
-                    id="todoTitle"
-                    name="todoTitle"
-                    placeholder="Title..."
-                    maxlength="15"
-                    minlength="1"
-                    required
-                />
-                <input
-                    type="hidden"
-                    name="project_id"
-                    id="project_id"
-                    value="{{ $projectdata->project_id }}"
-                    required
-                    minlength="1"
-                />
-                <input
-                    type="text"
-                    name="todoDescription"
-                    id="todoDescription"
-                    placeholder="Description..."
-                />
-                <button type="submit">Add</button>
-            </form>
-        </div>
-        @else @if($projectdata)
+        @if($projectdata)
         <!-- container for insert -->
         <div class="container">
             <button class="btn btn-primary edit">
@@ -129,7 +87,7 @@
                         <td>
                             <button class="btn btn-primary edit">
                                 <a
-                                    href="{{ route('viewdata_todo', $resource->todo_id) }}"
+                                    href="{{ route('vieweditdata_todo',$resource->todo_id) }}"
                                     >Edit</a
                                 >
                             </button>
@@ -250,7 +208,7 @@
                         <td>
                             <button class="btn btn-primary edit">
                                 <a
-                                    href="{{ route('viewdata_todo', $rec->todo_id) }}"
+                                    href="{{ route('vieweditdata_todo',$resource->todo_id) }}"
                                     >Edit</a
                                 >
                             </button>
@@ -347,6 +305,55 @@
                 @endforeach -->
             </div>
         </div>
-        @endif @endif
+        @else
+
+        <div class="container">
+            <button class="btn btn-primary edit">
+                <a href="{{ route('view_todo',$todoeditdata->project_id) }}"
+                    >Back</a
+                >
+            </button>
+
+            <form
+                class="add-todo-form"
+                id="addTodoForm"
+                method="post"
+                action="{{ route('update_todo') }}"
+            >
+                @csrf
+                <input
+                    type="text"
+                    id="todoTitle"
+                    name="todoTitle"
+                    value="{{ $todoeditdata->todo_name }}"
+                    maxlength="15"
+                    minlength="1"
+                    required
+                />
+                <input
+                    type="hidden"
+                    name="project_id"
+                    id="project_id"
+                    value="{{ $todoeditdata->project_id }}"
+                    required
+                    minlength="1"
+                />
+                <input
+                    type="hidden"
+                    name="todo_id"
+                    id="todo_id"
+                    value="{{ $todoeditdata->todo_id }}"
+                />
+                <input
+                    type="text"
+                    name="todoDescription"
+                    id="todoDescription"
+                    placeholder="Description..."
+                    value="{{ $todoeditdata->todo_Description }}"
+                />
+                <button type="submit">Add</button>
+            </form>
+        </div>
+        @endif
     </body>
 </html>

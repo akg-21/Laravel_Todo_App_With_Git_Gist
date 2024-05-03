@@ -14,14 +14,14 @@ class TodoController extends Controller
      */
     public function index(string $id)
     {
-        $completedCount=DB::table('todos')->where('todo_status',1)->count();
-        $pendingCount=DB::table('todos')->where('todo_status',0)->count();
-        $tododata = Todo::where('project_id','=',$id)->first();
-        $alltodo=DB::table('todos')->where('project_id','=',$id)->get();
-        $projectdata=projects::where('project_id','=',$id)->first();
+        $completedCount = DB::table('todos')->where('todo_status', 1)->count();
+        $pendingCount = DB::table('todos')->where('todo_status', 0)->count();
+        $tododata = Todo::where('project_id', '=', $id)->first();
+        $alltodo = DB::table('todos')->where('project_id', '=', $id)->get();
+        $projectdata = projects::where('project_id', '=', $id)->first();
         // dd($tododata);
-        $todoeditdata=null;
-        return view("todo", compact("tododata","alltodo","projectdata","completedCount","pendingCount","todoeditdata"));
+        $todoeditdata = null;
+        return view("todo", compact("tododata", "alltodo", "projectdata", "completedCount", "pendingCount", "todoeditdata"));
     }
 
     /**
@@ -40,14 +40,14 @@ class TodoController extends Controller
         // dd($request->all());
         $todo = new Todo();
         $request->validate([
-        'todoTitle'=>'required',
-        'todoDescription'=>'required',
-        'project_id'=>'required'
+            'todoTitle' => 'required',
+            'todoDescription' => 'required',
+            'project_id' => 'required'
         ]);
-        $todo->todo_name= $request->todoTitle;
-        $todo->todo_Description= $request->todoDescription;
-        $todo->project_id= $request->project_id;
-        $todo->todo_status=0;
+        $todo->todo_name = $request->todoTitle;
+        $todo->todo_Description = $request->todoDescription;
+        $todo->project_id = $request->project_id;
+        $todo->todo_status = 0;
         $todo->save();
         return redirect()->back();
     }
@@ -55,13 +55,14 @@ class TodoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $todo_id)
     {
-        // $todoeditdata=todo::where('todo_id','=',$id)->first();
+        $todoeditdata = todo::where('todo_id', '=', $todo_id)->first();
+        // dd($todoeditdata);
+        $projectdata = null;
+        // return route('view_todo', $todoeditdata);
 
-        // // dd($todoeditdata);
-        // $projectdata=null;
-        return view('todo',compact('todoeditdata','projectdata'));
+        return view('todo', compact('todoeditdata', 'projectdata'));
     }
 
     /**
@@ -75,9 +76,17 @@ class TodoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, todo $todo)
+    public function update(Request $request)
     {
-        //
+        // dd($request->all());
+        $request->validate([
+            'todoTitle' => 'required',
+            'todoDescription' => 'required',
+            'project_id' => 'required',
+            'todo_id' => 'required'
+        ]);
+        todo::where('todo_id', '=', $request->todo_id)->update(['todo_name' => $request->todoTitle, 'todo_Description' => $request->todoDescription, 'project_id' => $request->project_id,]);
+        return redirect()->route('view_todo', $request->project_id);
     }
 
     /**
@@ -86,18 +95,17 @@ class TodoController extends Controller
     public function destroy(string $id)
     {
         // dd($id);
-        DB::table('todos')->where('todo_id',$id)->delete();
+        DB::table('todos')->where('todo_id', $id)->delete();
         return redirect()->back();
     }
     public function statusUp(string $id)
     {
         // dd($id);
-        $data=todo::where('todo_id','=',$id)->first();
-        if($data->todo_status== 0){
-            todo::where('todo_id','=',$id)->update(['todo_status'=> 1]);
-        }
-        else{
-            todo::where('todo_id','=',$id)->update(['todo_status'=> 0]);
+        $data = todo::where('todo_id', '=', $id)->first();
+        if ($data->todo_status == 0) {
+            todo::where('todo_id', '=', $id)->update(['todo_status' => 1]);
+        } else {
+            todo::where('todo_id', '=', $id)->update(['todo_status' => 0]);
         }
         return redirect()->back();
     }

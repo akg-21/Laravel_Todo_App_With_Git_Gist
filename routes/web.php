@@ -17,25 +17,25 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    
+
     // Route::get('/project',function(){
     //     return view('project');
     // });
 
     //toto routes starts
-    Route::get('/statusUp_todo/{id}', [TodoController::class,'statusUp'])->name('statusUp_todo');
-    Route::get('/delete_todo/{id}',[TodoController::class,'destroy'])->name('delete_todo');
-    Route::get('/view_todo/{id}', [TodoController::class,'index'])->name('view_todo');
-    Route::post('/insert_todo',[TodoController::class,'store'])->name('insert_todo');     
-    Route::get('/viewdata_todo/{id}',[TodoController::class,'show'])->name('viewdata_todo');
-    Route::post('/update_todo',[TodoController::class,'update'])->name('update_todo');
+    Route::get('/statusUp_todo/{id}', [TodoController::class, 'statusUp'])->name('statusUp_todo');
+    Route::get('/delete_todo/{id}', [TodoController::class, 'destroy'])->name('delete_todo');
+    Route::get('/view_todo/{id}', [TodoController::class, 'index'])->name('view_todo');
+    Route::post('/insert_todo', [TodoController::class, 'store'])->name('insert_todo');
+    Route::get('/vieweditdata_todo/{todo_id}', [TodoController::class, 'show'])->name('vieweditdata_todo');
+    Route::post('/update_todo', [TodoController::class, 'update'])->name('update_todo');
     //project routes starts
-    Route::get('/statusUp/{id}', [ProjectsController::class,'statusUp'])->name('statusUp');
-    Route::get('/delete/{id}',[ProjectsController::class,'destroy'])->name('delete'); 
-    Route::get('/viewdata/{id}',[ProjectsController::class,'show'])->name('viewdata');
-    Route::post('/update',[ProjectsController::class,'update'])->name('update');
-    Route::get('/project',[ProjectsController::class,'index'])->name('view');
-    Route::post('/insert',[ProjectsController::class,'store'])->name('insert');
+    Route::get('/statusUp/{id}', [ProjectsController::class, 'statusUp'])->name('statusUp');
+    Route::get('/delete/{id}', [ProjectsController::class, 'destroy'])->name('delete');
+    Route::get('/viewdata/{id}', [ProjectsController::class, 'show'])->name('viewdata');
+    Route::post('/update', [ProjectsController::class, 'update'])->name('update');
+    Route::get('/project', [ProjectsController::class, 'index'])->name('view');
+    Route::post('/insert', [ProjectsController::class, 'store'])->name('insert');
     //project routes ends
     //profile routes starts
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -44,4 +44,4 @@ Route::middleware('auth')->group(function () {
     //profile routes ends
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
