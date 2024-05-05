@@ -106,6 +106,16 @@ h1 {
     color: #fff;
     border: none;
 }
+.gist {
+    background-color: #00ff73;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+.button-container {
+    text-align: right;
+}
 .hover {
     background-color: #d834db;
     color: #fff;

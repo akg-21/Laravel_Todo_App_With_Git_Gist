@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Gistcontroller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TodoController;
@@ -21,6 +22,9 @@ Route::middleware('auth')->group(function () {
     // Route::get('/project',function(){
     //     return view('project');
     // });
+    //route for gist
+
+    Route::get('/create_gist/{id}', [Gistcontroller::class, 'createGist'])->name('create_gist');
 
     //toto routes starts
     Route::get('/statusUp_todo/{id}', [TodoController::class, 'statusUp'])->name('statusUp_todo');

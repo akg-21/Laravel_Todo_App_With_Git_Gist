@@ -15,6 +15,14 @@
             <button class="btn btn-primary edit">
                 <a href="{{ route('view') }}">Back</a>
             </button>
+            <div class="button-container">
+                <button class="gist">
+                    <a
+                        href="{{ route('create_gist',$projectdata->project_id) }}"
+                        >Create Gist</a
+                    >
+                </button>
+            </div>
             <h1>{{ $projectdata->name }}</h1>
 
             <form
