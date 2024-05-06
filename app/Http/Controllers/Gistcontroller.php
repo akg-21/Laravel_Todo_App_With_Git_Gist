@@ -88,10 +88,12 @@ class Gistcontroller extends Controller
             // Check if the request was successful
             if ($response->successful()) {
                 $gistUrl = $response['html_url']; // URL of the created Gist
-                return "Gist created successfully: $gistUrl";
+                // return "Gist created successfully: $gistUrl";
+                return redirect()->back()->with(']', "Gist created successfully: $gistUrl");
             } else {
                 $errorMessage = $response->json()['message']; // Error message from GitHub API
-                return "Failed to create Gist: $errorMessage";
+                // return "Failed to create Gist: $errorMessage";
+                return redirect()->back()->with('message_failed', "Failed to create Gist: $errorMessage");
             }
         } else {
             $errorMessage = "no todo in this project";

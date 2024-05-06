@@ -4,12 +4,21 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Todo App</title>
-        @vite(['resources/css/todo.css'])
+        @vite(['resources/css/todo.css']) @vite(['resources/js/todo.js'])
     </head>
     <body>
+        {{ session("message_success") }}
+        {{ session("message_failed") }}
         <!-- container for edit -->
-
-        @if($projectdata)
+        @if(session('message_success'))
+        <h6 class="alert alert-failed">
+            {{ session("message_failed") }}
+        </h6>
+        @endif @if(session('message_failed'))
+        <h6 class="alert alert-failed">
+            {{ session("message_failed") }}
+        </h6>
+        @endif @if($projectdata)
         <!-- container for insert -->
         <div class="container">
             <button class="btn btn-primary edit">
