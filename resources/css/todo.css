@@ -179,5 +179,33 @@ a {
     background-color: #f2dede;
     border-color: #ebccd1;
 }
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+/* Add styles for other types of alerts like error, warning, info, etc. */
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+/* Add styles for other types of alerts like error, warning, info, etc. */
 
 /* Add styles for other types of alerts like warning, info, etc. */
