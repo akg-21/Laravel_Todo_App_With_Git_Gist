@@ -64,7 +64,7 @@ class Gistcontroller extends Controller
 
 
             //     // Get the GitHub access token
-            $token = env('GIST_HUB_TOKEN');
+            $token = env('GIST_GITHUB_TOKEN');
             //     // Debug: Output the token
             //     // dd($token);
 
