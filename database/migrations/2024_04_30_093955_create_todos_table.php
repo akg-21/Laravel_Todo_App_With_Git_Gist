@@ -18,6 +18,7 @@ return new class extends Migration
             $table->boolean("todo_status")->default(false);
             $table->unsignedBigInteger('project_id');
             $table->foreign('project_id')->references('project_id')->on('projects')->cascadeOnDelete();
+            $table->boolean("deleted")->default(false);
             $table->timestamps();
         });
     }

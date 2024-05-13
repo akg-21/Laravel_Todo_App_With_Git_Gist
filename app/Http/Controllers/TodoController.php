@@ -14,8 +14,8 @@ class TodoController extends Controller
      */
     public function index(string $id)
     {
-        $completedCount = DB::table('todos')->where('todo_status', 1)->count();
-        $pendingCount = DB::table('todos')->where('todo_status', 0)->count();
+        $completedCount = DB::table('todos')->where('todo_status', 1)->where('deleted', 0)->count();
+        $pendingCount = DB::table('todos')->where('todo_status', 0)->where('deleted', 0)->count();
         $tododata = Todo::where('project_id', '=', $id)->first();
         $alltodo = DB::table('todos')->where('project_id', '=', $id)->get();
         $projectdata = projects::where('project_id', '=', $id)->first();
@@ -48,6 +48,7 @@ class TodoController extends Controller
         $todo->todo_Description = $request->todoDescription;
         $todo->project_id = $request->project_id;
         $todo->todo_status = 0;
+        $todo->deleted = 0;
         $todo->save();
         return redirect()->back();
     }
@@ -95,7 +96,8 @@ class TodoController extends Controller
     public function destroy(string $id)
     {
         // dd($id);
-        DB::table('todos')->where('todo_id', $id)->delete();
+        // DB::table('todos')->where('todo_id', $id)->delete();
+        todo::where('todo_id', '=', $id)->update(['deleted' => 1]);
         return redirect()->back();
     }
     public function statusUp(string $id)
@@ -108,5 +110,16 @@ class TodoController extends Controller
             todo::where('todo_id', '=', $id)->update(['todo_status' => 0]);
         }
         return redirect()->back();
+    }
+    public function setdeleted(string $id)
+    {
+        $data = todo::where('todo_id', '=', $id)->first();
+        if ($data->deleted == 0) {
+            todo::where('todo_id', '=', $id)->update(['deleted' => 1]);
+        } else {
+            todo::where('todo_id', '=', $id)->update(['deleted' => 0]);
+        }
+
+        return redirect()->route('view');
     }
 }

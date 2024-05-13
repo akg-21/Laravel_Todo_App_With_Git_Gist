@@ -7,6 +7,7 @@ use App\Models\todo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 
 class Gistcontroller extends Controller
 {
@@ -73,7 +74,7 @@ class Gistcontroller extends Controller
                 'description' => 'Todo App Gist',
                 'public' => true,
                 'files' => [
-                    'todo_app.txt' => [
+                    $projectdata->name . ".md" => [
                         'content' => $content . $result
                     ]
                 ]
@@ -89,7 +90,9 @@ class Gistcontroller extends Controller
             if ($response->successful()) {
                 $gistUrl = $response['html_url']; // URL of the created Gist
                 // return "Gist created successfully: $gistUrl";
-                return redirect()->route('view_todo', $id)->with('message_success', "Gist created successfully: $gistUrl");
+                return redirect()->away($gistUrl);
+                // Redirect::away($gistUrl);
+                // return redirect()->route('view_todo', $id)->with('message_success', "Gist created successfully: $gistUrl");
             } else {
                 $errorMessage = $response->json()['message']; // Error message from GitHub API
                 // return "Failed to create Gist: $errorMessage";

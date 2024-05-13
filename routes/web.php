@@ -9,9 +9,7 @@ use App\Http\Controllers\ProjectsController;
 Route::get('/', function () {
     return view('auth.login');
 });
-Route::get('/pop', function () {
-    return view('pop');
-});
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
