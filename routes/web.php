@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\RecycleController;
 use App\Http\Controllers\Gistcontroller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
@@ -8,6 +9,9 @@ use App\Http\Controllers\ProjectsController;
 
 Route::get('/', function () {
     return view('auth.login');
+});
+Route::get('/recycle', function () {
+    return view('recycle');
 });
 
 
@@ -20,10 +24,9 @@ Route::middleware('auth')->group(function () {
     // Route::get('/project',function(){
     //     return view('project');
     // });
+    Route::get('/recycle', [RecycleController::class, 'index'])->name('recycle');
     //route for gist
-
     Route::get('/create_gist/{id}', [Gistcontroller::class, 'createGist'])->name('create_gist');
-
     //toto routes starts
     Route::get('/statusUp_todo/{id}', [TodoController::class, 'statusUp'])->name('statusUp_todo');
     Route::get('/delete_todo/{id}', [TodoController::class, 'destroy'])->name('delete_todo');

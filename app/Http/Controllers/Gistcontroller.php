@@ -90,7 +90,10 @@ class Gistcontroller extends Controller
             if ($response->successful()) {
                 $gistUrl = $response['html_url']; // URL of the created Gist
                 // return "Gist created successfully: $gistUrl";
-                return redirect()->away($gistUrl);
+                return redirect()->to($gistUrl);
+                // return $gistUrl;
+                // echo "<script>window.open('" . $url . "', '_blank')</script>";
+
                 // Redirect::away($gistUrl);
                 // return redirect()->route('view_todo', $id)->with('message_success', "Gist created successfully: $gistUrl");
             } else {

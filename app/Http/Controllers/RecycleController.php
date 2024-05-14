@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\recycle;
+use App\Models\projects;
+use App\Models\todo;
 use Illuminate\Http\Request;
 
 class RecycleController extends Controller
@@ -12,7 +14,9 @@ class RecycleController extends Controller
      */
     public function index()
     {
-        //
+        $projects = projects::where("deleted", 1)->get();
+        $todos = todo::where("deleted", 1)->get();
+        return view("recycle", compact("todos", "projects"));
     }
 
     /**
