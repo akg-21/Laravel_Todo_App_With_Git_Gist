@@ -66,4 +66,17 @@ class RecycleController extends Controller
     {
         //
     }
+    public function restoreproject(string $id)
+    {
+        projects::where('project_id', '=', $id)->update(['deleted' => 0]);
+    }
+    public function restoretodos(string $id)
+    {
+        todo::where('todo_id', '=', $id)->update(['deleted' => 0]);
+    }
+    public function restoreall(string $id)
+    {
+        todo::where('deleted')->update(['deleted' => 0]);
+        projects::where('deleted')->update(['deleted' => 0]);
+    }
 }
