@@ -71,3 +71,19 @@ a {
     text-decoration: none !important;
     color: inherit !important;
 }
+
+.header button#delete-all {
+    background-color: #ff4d4d; /* Red background */
+    color: #fff; /* White text */
+    border: none; /* No border */
+    padding: 10px 20px; /* Padding for spacing */
+    cursor: pointer; /* Pointer cursor on hover */
+    border-radius: 4px; /* Rounded corners */
+    font-size: 16px; /* Font size */
+    font-weight: bold; /* Bold text */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.header button#delete-all:hover {
+    background-color: #e60000; /* Darker red on hover */
+}

@@ -8,8 +8,12 @@
     </head>
     <body>
         <div class="container">
-            <h2>Deleted Projects and Todos</h2>
-
+            <div class="header">
+                <h2>Deleted Projects and Todos</h2>
+                <button id="delete-all">
+                    <a href="{{ route('delete_all') }}">Delete All</a>
+                </button>
+            </div>
             <div class="deleted-items">
                 @if($projects) @foreach($projects as $project)
                 <div class="item">

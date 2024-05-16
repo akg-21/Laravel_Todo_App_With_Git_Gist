@@ -24,7 +24,7 @@ Route::middleware('auth')->group(function () {
     // Route::get('/project',function(){
     //     return view('project');
     // });
-
+    Route::get('/delete_all', [RecycleController::class, 'deleteall'])->name('delete_all');
     Route::get('/recover_all', [RecycleController::class, 'restoreall'])->name('recover_all');
     Route::get('/recover_project/{id}', [RecycleController::class, 'restoreproject'])->name('recover_project');
     Route::get('/recover_todo/{id}', [RecycleController::class, 'restoretodos'])->name('recover_todo');
