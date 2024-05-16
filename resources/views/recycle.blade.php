@@ -8,6 +8,7 @@
     </head>
     <body>
         <div class="container">
+            @if($projects->count()!=0 or $todos->count()!=0)
             <div class="header">
                 <h2>Deleted Projects and Todos</h2>
                 <button id="delete-all">
@@ -46,10 +47,17 @@
 
                 <!-- Add more items as needed -->
             </div>
-
             <button class="recover-all-btn">
                 <a href="{{ route('recover_all') }}">Recover All</a>
             </button>
+            @else
+            <div class="header">
+                <h2>No deleted Projects and Todos</h2>
+                <button id="backtoprojects">
+                    <a href="{{ route('view') }}">Projects</a>
+                </button>
+            </div>
+            @endif
         </div>
     </body>
 </html>

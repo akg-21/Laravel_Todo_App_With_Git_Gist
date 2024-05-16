@@ -7,7 +7,7 @@
         @vite(['resources/css/project.css'])
     </head>
     <body>
-        <div class="container">
+        <div class="container"> 
             @if ($editdata)
             <div class="add-project-form">
                 <h2>Edit Project Name</h2>
@@ -41,8 +41,12 @@
                         name="project_name"
                         required
                     />
-                    <button type="submit">Add Project</button>
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <button type="submit">Add Project</button>
+                        <button style="margin-left: 528px;" type="button" ><a href="{{ route('recycle') }}">Recycle bin</a></button>
+                    </div>
                 </form>
+               
             </div>
 
             @if ($pendingCount==0)

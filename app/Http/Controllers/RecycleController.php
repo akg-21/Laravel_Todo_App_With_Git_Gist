@@ -86,6 +86,6 @@ class RecycleController extends Controller
     {
         todo::where('deleted', '=', 1)->update(['deleted' => 2]);
         projects::where('deleted', '=', 1)->update(['deleted' => 2]);
-        return redirect()->route('project');
+        return redirect()->route('view');
     }
 }
